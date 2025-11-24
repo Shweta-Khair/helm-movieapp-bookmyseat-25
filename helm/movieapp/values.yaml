@@ -17,7 +17,7 @@ rds:
   enabled: true  # Set to true to use RDS instead of Kubernetes MySQL
   endpoint: "movie-db-shweta.clbdj44v7c4x.us-east-1.rds.amazonaws.com"  # e.g., movie-db-rds.xxxxx.us-east-1.rds.amazonaws.com
   port: 3306
-  database: movie_db
+  database: movie-db-shweta
   # Kubernetes secret configuration
   secretName: movie-db-credentials  # Kubernetes secret name (must contain: username, password)
   secret:
