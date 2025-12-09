@@ -1,4 +1,4 @@
-{{- if .Values.mysql.enabled }}
+{{- if .Values.mysql.enabled | default false }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
