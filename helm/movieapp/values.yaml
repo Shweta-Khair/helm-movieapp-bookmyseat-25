@@ -12,6 +12,7 @@ storageClass:
   volumeBindingMode: Immediate
   reclaimPolicy: Delete
 
+rds: {}
   
 
 
