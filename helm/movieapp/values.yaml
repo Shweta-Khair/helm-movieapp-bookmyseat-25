@@ -62,7 +62,7 @@ movieService:
   env:
     springProfilesActive: docker
     # These values are used when mysql.enabled=true
-    springDatasourceUrl: jdbc:mysql://movie-db:3306/movie_db
+    springDatasourceUrl: jdbc:mysql://movie-db.clbdj44v7c4x.us-east-1.rds.amazonaws.com:3306/movie_db
     springDatasourceUsername: movieuser
     springDatasourcePassword: moviepass
     zipkinEndpoint: http://zipkin:9411/api/v2/spans
