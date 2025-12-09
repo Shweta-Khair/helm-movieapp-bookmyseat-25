@@ -20,7 +20,7 @@ rds:
   port: 3306
   database: movie-db
   # Kubernetes secret configuration
-  secretName: movie-db-credentials  # Kubernetes secret name (must contain: username, password)
+  secretName: finastra/dev  # Kubernetes secret name (must contain: username, password)
   secret:
     username: movieuser  # RDS database username
     password: "moviepass"  # RDS database password - Set this value
