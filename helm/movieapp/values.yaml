@@ -13,6 +13,8 @@ storageClass:
   reclaimPolicy: Delete
 
 createRdsSecret: false
+mysql:
+  enabled: false
 
 
 
