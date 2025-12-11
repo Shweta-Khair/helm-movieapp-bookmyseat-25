@@ -1,9 +1,10 @@
-# Global settings
 namespace:
   name: movie
   create: true
 
-# StorageClass configuration
+rds:
+  enabled: false
+
 storageClass:
   name: gp2-immediate
   provisioner: kubernetes.io/aws-ebs
@@ -12,25 +13,8 @@ storageClass:
   volumeBindingMode: Immediate
   reclaimPolicy: Delete
 
-  rds:
-  enabled: false
-
-#RDS Configuration
-# rds:
-#   enabled: true  # Set to true to use RDS instead of Kubernetes MySQL
-#   endpoint: "movie-dbs.clbdj44v7c4x.us-east-1.rds.amazonaws.com"  # e.g., movie-db-rds.xxxxx.us-east-1.rds.amazonaws.com
-#   port: 3306
-#   database: movie-db
-#   # Kubernetes secret configuration
-#   secretName: movie-db-credentials  # Kubernetes secret name (must contain: username, password)
-#   secret:
-#     username: movieuser  # RDS database username
-#     password: "moviepass"  # RDS database password - Set this value
-
-
-# MySQL Database configuration (Kubernetes deployment)
 mysql:
-  enabled: false  # Set to false when using RDS
+  enabled: false
   name: movie-db
   image:
     repository: mysql
@@ -47,14 +31,7 @@ mysql:
     size: 1Gi
     accessModes:
       - ReadWriteOnce
-  livenessProbe:
-    initialDelaySeconds: 30
-    periodSeconds: 10
-  readinessProbe:
-    initialDelaySeconds: 20
-    periodSeconds: 10
 
-# Movie Service (Spring Boot) configuration
 movieService:
   enabled: true
   name: movie-service
@@ -65,18 +42,11 @@ movieService:
   port: 8081
   env:
     springProfilesActive: docker
-    # These values are used when mysql.enabled=true
     springDatasourceUrl: jdbc:mysql://movie-db:3306/movie_db
     springDatasourceUsername: movieuser
     springDatasourcePassword: moviepass
     zipkinEndpoint: http://zipkin:9411/api/v2/spans
-  service:
-    type: ClusterIP
-    port: 8081
-    targetPort: 8081
 
-# ConfigMap for database initialization scripts
 initScripts:
   enabled: true
   name: movie-init-scripts
-
